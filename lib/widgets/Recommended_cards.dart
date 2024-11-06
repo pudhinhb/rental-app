@@ -6,7 +6,8 @@ class RecommendedCard extends StatefulWidget {
   final String description;
   final int rating;
 
-  RecommendedCard({super.key, 
+  const RecommendedCard({
+    super.key, 
     required this.imageUrl,
     required this.price,
     required this.description,
@@ -18,12 +19,16 @@ class RecommendedCard extends StatefulWidget {
 }
 
 class _RecommendedCardState extends State<RecommendedCard> {
-  bool isLiked = false;
+  final ValueNotifier<bool> isLiked = ValueNotifier(false); // Use ValueNotifier
 
   @override
   Widget build(BuildContext context) {
+    // Get screen width and height
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
@@ -33,25 +38,28 @@ class _RecommendedCardState extends State<RecommendedCard> {
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: Image.network(
                   widget.imageUrl,
-                  height: 150,
-                  width: 250,
+                  height: screenHeight * 0.2, // Adjust height based on screen size
+                  width: screenWidth * 0.6,   // Adjust width based on screen size
                   fit: BoxFit.cover,
                 ),
               ),
               Positioned(
-                top: 8,
-                right: 8,
+                top: screenHeight * 0.01,
+                right: screenWidth * 0.02,
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
-                  child: IconButton(
-                    icon: Icon(
-                      isLiked ? Icons.favorite : Icons.favorite_border,
-                      color: isLiked ? Colors.red : Colors.grey,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isLiked = !isLiked;
-                      });
+                  child: ValueListenableBuilder<bool>(
+                    valueListenable: isLiked,
+                    builder: (context, value, child) {
+                      return IconButton(
+                        icon: Icon(
+                          value ? Icons.favorite : Icons.favorite_border,
+                          color: value ? Colors.red : Colors.grey,
+                        ),
+                        onPressed: () {
+                          isLiked.value = !value; // Toggle the value
+                        },
+                      );
                     },
                   ),
                 ),
@@ -59,7 +67,7 @@ class _RecommendedCardState extends State<RecommendedCard> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(screenWidth * 0.04), // Responsive padding
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -67,30 +75,42 @@ class _RecommendedCardState extends State<RecommendedCard> {
                   children: [
                     Text(
                       '\$${widget.price}',
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.05, // Responsive font size
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const Text(
+                    Text(
                       '/Night',
-                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.normal),
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.04, // Responsive font size
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: screenWidth * 0.01), // Responsive spacing
                     const Icon(
                       Icons.flash_on,
                       color: Colors.orangeAccent,
                       size: 16,
                     ),
-                    const SizedBox(width: 88),
+                    SizedBox(width: screenWidth * 0.2), // Adjust width based on screen size
                     const Icon(Icons.star, color: Colors.amber, size: 16),
-                    const SizedBox(width: 4),
-                    Text(widget.rating.toString(), style: const TextStyle(fontSize: 14)),
+                    SizedBox(width: screenWidth * 0.01),
+                    Text(
+                      widget.rating.toString(),
+                      style: TextStyle(fontSize: screenWidth * 0.035),
+                    ),
                   ],
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: screenHeight * 0.005), // Responsive spacing
                 Text(
                   widget.description,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.04,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: screenHeight * 0.005),
                 const Text(
                   'Private room / 4 beds',
                   style: TextStyle(fontSize: 14, color: Colors.grey),
@@ -101,5 +121,11 @@ class _RecommendedCardState extends State<RecommendedCard> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    isLiked.dispose(); // Dispose of the ValueNotifier
+    super.dispose();
   }
 }

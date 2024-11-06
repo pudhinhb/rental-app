@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'widgets/location_card.dart';
-import 'widgets/Recommended_cards.dart';
-import 'widgets/most_viewed_hotels.dart'; 
-import 'widgets/advertisement_card.dart'; 
+import 'widgets/recommended_cards.dart';
+import 'widgets/most_viewed_hotels.dart';
+import 'widgets/advertisement_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -83,6 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -91,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               // Top section with light gray background
               Container(
-                color: Colors.grey[200], // Light gray background
-                padding: const EdgeInsets.all(16.0),
+                color: Colors.grey[200],
+                padding: EdgeInsets.all(screenWidth * 0.04),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -104,8 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    // Using LayoutBuilder for responsive design
+                    SizedBox(height: screenHeight * 0.02),
                     LayoutBuilder(
                       builder: (context, constraints) {
                         return Row(
@@ -114,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: TextField(
                                 controller: _searchController,
                                 onChanged: (value) {
-                                  _searchQuery = value; // Update search query without setState
+                                  _searchQuery = value;
                                 },
                                 decoration: InputDecoration(
                                   hintText: 'Where did you go?',
@@ -128,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 8), // Space between TextField and IconButton
+                            SizedBox(width: screenWidth * 0.02),
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -150,11 +152,11 @@ class _HomeScreenState extends State<HomeScreen> {
               // Content section with white background
               Container(
                 color: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 24),
+                    SizedBox(height: screenHeight * 0.03),
                     const Text(
                       'Popular locations',
                       style: TextStyle(
@@ -163,9 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: screenHeight * 0.01),
                     SizedBox(
-                      height: 160, // Adjust height for aspect ratio
+                      height: screenHeight * 0.2,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: filteredLocations.map((location) {
@@ -176,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         }).toList(),
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: screenHeight * 0.03),
                     const Text(
                       'Recommended',
                       style: TextStyle(
@@ -185,13 +187,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: screenHeight * 0.01),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: recommendedHotels.map((hotel) {
                           return Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: EdgeInsets.only(right: screenWidth * 0.02),
                             child: RecommendedCard(
                               imageUrl: hotel['imageUrl']!,
                               price: double.parse(hotel['price']!),
@@ -202,23 +204,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         }).toList(),
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: screenHeight * 0.03),
                     AdvertisementCard(
                       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvYv4bJH62KZEjKyo04sAFzDd-WZwrP46R6A&s',
                       title: 'Hosting Fee for\nas low as 1%',
                       buttonText: 'Become a Host',
                       onPressed: () {},
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: screenHeight * 0.03),
                     const Text(
-                      'Most Viewed ',
+                      'Most Viewed',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: screenHeight * 0.01),
                     ListView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

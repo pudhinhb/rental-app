@@ -16,11 +16,14 @@ class AdvertisementCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      height: 300, // Adjust the height to fill the space more
+      height: screenHeight * 0.35, // Height as a percentage of screen height
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 16.0),
-      padding: const EdgeInsets.all(16.0),
+      margin: EdgeInsets.symmetric(vertical: screenHeight * 0.02), // Responsive vertical margin
+      padding: EdgeInsets.all(screenWidth * 0.04), // Responsive padding
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(12.0),
@@ -31,25 +34,32 @@ class AdvertisementCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 22,
+              fontSize: screenWidth * 0.06, // Responsive font size
               fontWeight: FontWeight.bold,
             ),
           ),
+          SizedBox(height: screenHeight * 0.02), // Responsive spacing
           ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.redAccent,
+              padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.015, // Button height
+                horizontal: screenWidth * 0.08, // Button width
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
               ),
             ),
-            child: Text(buttonText),
+            child: Text(
+              buttonText,
+              style: TextStyle(fontSize: screenWidth * 0.045), // Responsive font size
+            ),
           ),
         ],
       ),
