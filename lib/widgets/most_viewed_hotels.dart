@@ -96,7 +96,7 @@ class _MostViewedHotelCardState extends State<MostViewedHotelCard> {
                       size: 16,
                     ),
                     const Spacer(),
-                    const Icon(Icons.star, color: Colors.amber, size: 16),
+                    Icon(Icons.star, color: Colors.amber, size: screenWidth * 0.04),
                     SizedBox(width: screenWidth * 0.01),
                     Text(
                       widget.rating.toString(),
@@ -113,9 +113,9 @@ class _MostViewedHotelCardState extends State<MostViewedHotelCard> {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.005),
-                const Text(
+                Text(
                   'Private room / 4 beds',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  style: TextStyle(fontSize: screenWidth * 0.035,  color: Colors.grey),
                 ),
               ],
             ),

@@ -99,10 +99,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                     Text(
                       'Explore the world! By Travelling',
                       style: TextStyle(
-                        fontSize: 34,
+                        fontSize: screenWidth * 0.085,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -157,10 +157,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: screenHeight * 0.03),
-                    const Text(
+                     Text(
                       'Popular locations',
                       style: TextStyle(
-                        fontSize: 18,
+                         fontSize: screenWidth * 0.045,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -179,10 +179,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.03),
-                    const Text(
+                     Text(
                       'Recommended',
                       style: TextStyle(
-                        fontSize: 18,
+                         fontSize: screenWidth * 0.045,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -212,10 +212,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {},
                     ),
                     SizedBox(height: screenHeight * 0.03),
-                    const Text(
+                     Text(
                       'Most Viewed',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: screenWidth * 0.045,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),

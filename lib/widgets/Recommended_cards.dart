@@ -111,9 +111,9 @@ class _RecommendedCardState extends State<RecommendedCard> {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.005),
-                const Text(
+                 Text(
                   'Private room / 4 beds',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  style: TextStyle(fontSize: screenWidth * 0.035, color: Colors.grey),
                 ),
               ],
             ),
