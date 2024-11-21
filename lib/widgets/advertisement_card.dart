@@ -25,7 +25,7 @@ class AdvertisementCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: screenHeight * 0.02), // Responsive vertical margin
       padding: EdgeInsets.all(screenWidth * 0.04), // Responsive padding
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
         image: DecorationImage(
           image: NetworkImage(imageUrl),
@@ -58,7 +58,10 @@ class AdvertisementCard extends StatelessWidget {
             ),
             child: Text(
               buttonText,
-              style: TextStyle(fontSize: screenWidth * 0.045), // Responsive font size
+              style: TextStyle(
+                color: Colors.white, 
+                fontSize: screenWidth * 0.045, 
+              ),
             ),
           ),
         ],

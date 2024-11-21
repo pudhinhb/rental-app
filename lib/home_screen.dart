@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      Text(
                       'Popular locations',
                       style: TextStyle(
-                         fontSize: screenWidth * 0.045,
+                         fontSize: screenWidth * 0.065,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      Text(
                       'Recommended',
                       style: TextStyle(
-                         fontSize: screenWidth * 0.045,
+                         fontSize: screenWidth * 0.065,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -215,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      Text(
                       'Most Viewed',
                       style: TextStyle(
-                        fontSize: screenWidth * 0.045,
+                        fontSize: screenWidth * 0.065,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),

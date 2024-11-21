@@ -30,9 +30,8 @@ class _MostViewedHotelCardState extends State<MostViewedHotelCard> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Card(
+    return Container(
       margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
           Stack(

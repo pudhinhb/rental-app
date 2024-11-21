@@ -7,7 +7,7 @@ class RecommendedCard extends StatefulWidget {
   final int rating;
 
   const RecommendedCard({
-    super.key, 
+    super.key,
     required this.imageUrl,
     required this.price,
     required this.description,
@@ -27,9 +27,12 @@ class _RecommendedCardState extends State<RecommendedCard> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Card(
+    return Container(
       margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Column(
         children: [
           Stack(
@@ -111,7 +114,7 @@ class _RecommendedCardState extends State<RecommendedCard> {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.005),
-                 Text(
+                Text(
                   'Private room / 4 beds',
                   style: TextStyle(fontSize: screenWidth * 0.035, color: Colors.grey),
                 ),
